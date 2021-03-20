@@ -1,4 +1,4 @@
-package com.salesforce.tests.runners;
+package com.salesforce.tests.factories.runners;
 
 import com.salesforce.tests.factories.*;
 import com.salesforce.tests.models.*;
@@ -13,8 +13,8 @@ public class UnrecognizedRunner implements CommandRunner {
         this.command = command;
     }
     
-    public boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
+    public Boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
         System.out.println("we couldn't recognized the <" + command.getName() + "> command");
-        return true;
+        return Boolean.TRUE;
     }    
 }

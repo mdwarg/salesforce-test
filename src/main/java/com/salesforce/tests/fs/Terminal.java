@@ -36,7 +36,7 @@ public class Terminal {
 	private void init() {
 		this.streamReader = new InputStreamReader(System.in);
         this.buffer = new BufferedReader(streamReader);
-        this.context = new Context(System.getProperty("user.dir"));
+        this.context = new Context();
 	}
 
 	private void processComands() throws IOException {
@@ -49,7 +49,7 @@ public class Terminal {
 		    try {
 		    	runApp = runner.runCommand(this.context);
 		    } catch (BadOptionException e) {
-		    	System.out.println("Bad option: the command <" + command.getName() + "> doesn't support de option: " + e.getBadOption());
+		    	System.out.println("Bad option: the command <" + command.getName() + "> doesn't support the option: " + e.getBadOption());
 		    } catch (InvalidParamsException e) {
 		    	System.out.println("Invalid params: " + e.getMessage());
 		    }

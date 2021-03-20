@@ -3,28 +3,24 @@ package com.salesforce.tests.models;
 import java.util.Stack;
 
 public class Context {
-	
+
 	private Stack<String> path = new Stack<String>();
 
 	public Context() {
 		super();
+		this.path.push("root");
 	}
 
-	public Context(String currentDirectory) {
-		super();
-		String[] splitPath = currentDirectory.split("/");
-		for (int i = 0; i < splitPath.length; i++) {
-			this.path.push(splitPath[i]);			
-		}
-	}
-	
-	public void goToPath(String path) {
-		String[] splitPath = path.split("/");
-		for (int i = 0; i < splitPath.length; i++) {
-			if(splitPath[i].equals("..")) {
-				this.path.pop();
-			} else if(!splitPath[i].equals(".")) {
-				this.path.push(splitPath[i]);			
+	public void goToPath(String targetPath) {
+		String[] splitPath = targetPath.split("/");
+		this.path = new Stack<String>();
+		for (int i = 1; i < splitPath.length; i++) {
+			if (splitPath[i].equals("..")) {
+				if (this.path.size() > 1) {
+					this.path.pop();
+				}
+			} else if (!splitPath[i].equals(".")) {
+				this.path.push(splitPath[i]);
 			}
 		}
 	}
@@ -36,5 +32,5 @@ public class Context {
 		}
 		return directoryPath.toString();
 	}
-	
+
 }

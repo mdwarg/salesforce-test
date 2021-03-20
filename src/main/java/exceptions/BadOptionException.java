@@ -8,6 +8,8 @@ package exceptions;
  */
 public class BadOptionException extends RuntimeException {
 
+	private static final long serialVersionUID = -5525904357156149848L;
+
 	private String badOption;
 
 	public BadOptionException(String badOption) {

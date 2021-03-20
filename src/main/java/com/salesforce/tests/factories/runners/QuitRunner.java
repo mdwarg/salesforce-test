@@ -1,4 +1,4 @@
-package com.salesforce.tests.runners;
+package com.salesforce.tests.factories.runners;
 
 import com.salesforce.tests.factories.*;
 import com.salesforce.tests.models.*;
@@ -10,8 +10,8 @@ public class QuitRunner implements CommandRunner {
    
     public QuitRunner() {}
     
-    public boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
+    public Boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
         System.out.println("bye bye...");
-        return false;
+        return Boolean.FALSE;
     }    
 }

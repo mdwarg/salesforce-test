@@ -1,8 +1,10 @@
-package com.salesforce.tests.runners;
+package com.salesforce.tests.factories.runners;
 
 import java.io.File;
+import java.util.Stack;
 
 import com.salesforce.tests.factories.*;
+import com.salesforce.tests.fs.Explorer;
 import com.salesforce.tests.models.*;
 
 import exceptions.BadOptionException;
@@ -16,7 +18,7 @@ public class LsRunner implements CommandRunner {
 		this.command = command;
 	}
 
-	public boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
+	public Boolean runCommand(Context context) throws BadOptionException, InvalidParamsException {
 		if(!command.getParameters().isEmpty()) {
 			throw new InvalidParamsException("Unsoported params. " + COMMAND_HELP);
 		}
@@ -29,19 +31,18 @@ public class LsRunner implements CommandRunner {
 		}
 		
 		listDirectory(context, recursive);
-		return true;
+		return Boolean.TRUE;
 	}
 
 	private void listDirectory(Context context, boolean recursive) {
-		File currentPath = new File(context.getCurrentDirectory());
-		File[] filedList = currentPath.listFiles();
-		for (int i = 0; i < filedList.length; i++) {
-			File file = filedList[i];
-			System.out.println(file.getAbsolutePath().toString());
-			if(recursive && file.isDirectory()) {
-				context.goToPath(file.getName());
+		FileNode currentPath = Explorer.getExplorer().getFileInPath(context.getCurrentDirectory());
+		Stack<FileNode> fileStack = currentPath.listFiles();
+		for (FileNode fileNode : fileStack) {
+			System.out.println(fileNode.getAbsolutePath());
+			if(recursive && fileNode.isDirectory()) {
+				context.goToPath(context.getCurrentDirectory() + "/" + fileNode.getName());
 				this.listDirectory(context, recursive);
-				context.goToPath("..");
+				context.goToPath(context.getCurrentDirectory() + "/" + "..");
 			}			
 		}
 	}

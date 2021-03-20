@@ -1,13 +1,13 @@
 package com.salesforce.tests.factories;
 
+import com.salesforce.tests.factories.runners.CdRunner;
+import com.salesforce.tests.factories.runners.LsRunner;
+import com.salesforce.tests.factories.runners.MkdirRunner;
+import com.salesforce.tests.factories.runners.PwdRunner;
+import com.salesforce.tests.factories.runners.QuitRunner;
+import com.salesforce.tests.factories.runners.TouchRunner;
+import com.salesforce.tests.factories.runners.UnrecognizedRunner;
 import com.salesforce.tests.models.Command;
-import com.salesforce.tests.runners.CdRunner;
-import com.salesforce.tests.runners.LsRunner;
-import com.salesforce.tests.runners.MkdirRunner;
-import com.salesforce.tests.runners.PwdRunner;
-import com.salesforce.tests.runners.QuitRunner;
-import com.salesforce.tests.runners.TouchRunner;
-import com.salesforce.tests.runners.UnrecognizedRunner;
 
 public class CommandRunnerFactory {
 

@@ -7,5 +7,5 @@ import exceptions.InvalidParamsException;
 
 public interface CommandRunner {
     // It return false if the command finish the app
-    public boolean runCommand(Context context) throws BadOptionException, InvalidParamsException;
+    public Boolean runCommand(Context context) throws BadOptionException, InvalidParamsException;
 }

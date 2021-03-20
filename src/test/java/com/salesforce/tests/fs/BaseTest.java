@@ -19,7 +19,7 @@ public class BaseTest {
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().muteForSuccessfulTests().enableLog();
 
-    protected void runTest(String[] expectedOutput, String... input) {
+    protected synchronized void runTest(String[] expectedOutput, String... input) {
         systemInMock.provideLines(input);
         Main.main(new String[0]);
         Assert.assertEquals(String.join("", expectedOutput),
